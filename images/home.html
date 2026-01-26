@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife CSS Animations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1510;
+            --bg-card: #2a2520;
+            --accent-gold: #d4af37;
+            --accent-bronze: #cd7f32;
+            --accent-sage: #87a96b;
+            --text-light: #f5f1e8;
+            --text-dim: #a89f91;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Organic Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(135, 169, 107, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            position: relative;
+            background: linear-gradient(180deg, rgba(135, 169, 107, 0.1) 0%, transparent 100%);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            animation: fadeInDown 1.2s ease both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            font-style: italic;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 48px rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .card-header {
+            padding: 1.5rem 2rem 1rem;
+            background: linear-gradient(135deg, rgba(135, 169, 107, 0.15), rgba(212, 175, 55, 0.1));
+        }
+
+        .card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .demo-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* CODE SNIPPET */
+        .code-snippet {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            color: var(--accent-sage);
+            font-family: 'Courier New', monospace;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* SECTION TITLES */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin: 5rem 0 3rem;
+            color: var(--accent-bronze);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        /* 1. FADE ANIMATIONS */
+        .fade-in {
+            animation: fadeIn 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .fade-in-out {
+            animation: fadeInOut 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            25%, 75% { opacity: 1; }
+        }
+
+        /* 2. SLIDE ANIMATIONS */
+        .slide-right {
+            animation: slideRight 3s ease-in-out infinite;
+        }
+
+        @keyframes slideRight {
+            0%, 100% { transform: translateX(-20%); }
+            50% { transform: translateX(20%); }
+        }
+
+        .slide-up {
+            animation: slideUp 3s ease-in-out infinite;
+        }
+
+        @keyframes slideUp {
+            0%, 100% { transform: translateY(15%); }
+            50% { transform: translateY(-15%); }
+        }
+
+        /* 3. ROTATE ANIMATIONS */
+        .rotate {
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotate-3d {
+            animation: rotate3d 5s linear infinite;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg) rotateX(0deg); }
+            50% { transform: rotateY(180deg) rotateX(180deg); }
+            100% { transform: rotateY(360deg) rotateX(360deg); }
+        }
+
+        /* 4. SCALE ANIMATIONS */
+        .pulse {
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.08); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.12); }
+            40% { transform: scale(1); }
+        }
+
+        /* 5. BOUNCE ANIMATIONS */
+        .bounce {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-12%); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-6%); }
+        }
+
+        .bounce-horizontal {
+            animation: bounceHorizontal 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceHorizontal {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(10%); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(5%); }
+        }
+
+        /* 6. SHAKE ANIMATIONS */
+        .shake {
+            animation: shake 0.6s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .wobble {
+            animation: wobble 1s ease-in-out infinite;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-4deg); }
+            75% { transform: rotate(4deg); }
+        }
+
+        /* 7. FLIP ANIMATIONS */
+        .flip {
+            animation: flip 2.5s ease-in-out infinite;
+        }
+
+        @keyframes flip {
+            0%, 100% { transform: rotateY(0); }
+            50% { transform: rotateY(180deg); }
+        }
+
+        .flip-vertical {
+            animation: flipVertical 2.5s ease-in-out infinite;
+        }
+
+        @keyframes flipVertical {
+            0%, 100% { transform: rotateX(0); }
+            50% { transform: rotateX(180deg); }
+        }
+
+        /* 8. SWING ANIMATIONS */
+        .swing {
+            transform-origin: top center;
+            animation: swing 2.5s ease-in-out infinite;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(12deg); }
+            75% { transform: rotate(-12deg); }
+        }
+
+        .pendulum {
+            transform-origin: top center;
+            animation: pendulum 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pendulum {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(25deg); }
+        }
+
+        /* 9. ZOOM ANIMATIONS */
+        .zoom-in {
+            animation: zoomIn 2.5s ease-in-out infinite;
+        }
+
+        @keyframes zoomIn {
+            0%, 100% { transform: scale(0.7); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+
+        .zoom-out {
+            animation: zoomOut 2.5s ease-in-out infinite;
+        }
+
+        @keyframes zoomOut {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0; }
+        }
+
+        /* 10. SKEW ANIMATIONS */
+        .skew {
+            animation: skew 3s ease-in-out infinite;
+        }
+
+        @keyframes skew {
+            0%, 100% { transform: skew(0deg, 0deg); }
+            25% { transform: skew(8deg, 4deg); }
+            75% { transform: skew(-8deg, -4deg); }
+        }
+
+        /* 11. ELASTIC ANIMATIONS */
+        .elastic {
+            animation: elastic 2s ease-in-out infinite;
+        }
+
+        @keyframes elastic {
+            0%, 100% { transform: scale(1, 1); }
+            25% { transform: scale(1.08, 0.92); }
+            50% { transform: scale(0.92, 1.08); }
+            75% { transform: scale(1.04, 0.96); }
+        }
+
+        /* 12. JELLO ANIMATIONS */
+        .jello {
+            animation: jello 2s ease-in-out infinite;
+        }
+
+        @keyframes jello {
+            0%, 100% { transform: skewX(0deg) skewY(0deg); }
+            25% { transform: skewX(-10deg) skewY(-10deg); }
+            37.5% { transform: skewX(5deg) skewY(5deg); }
+            50% { transform: skewX(-2.5deg) skewY(-2.5deg); }
+            62.5% { transform: skewX(1.25deg) skewY(1.25deg); }
+        }
+
+        /* 13. ROLL ANIMATIONS */
+        .roll-in {
+            animation: rollIn 3s ease-in-out infinite;
+        }
+
+        @keyframes rollIn {
+            0% { transform: translateX(-100%) rotate(-120deg); opacity: 0; }
+            50% { transform: translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateX(-100%) rotate(-120deg); opacity: 0; }
+        }
+
+        /* 14. BLINK ANIMATIONS */
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* 15. FLOAT ANIMATIONS */
+        .float {
+            animation: float 3.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* 16. WIGGLE */
+        .wiggle {
+            animation: wiggle 1s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-8deg); }
+            50% { transform: rotate(8deg); }
+            75% { transform: rotate(-4deg); }
+        }
+
+        /* 17. MORPH */
+        .morph {
+            animation: morph 4s ease-in-out infinite;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+        }
+
+        /* 18. SPIN VARIATIONS */
+        .spin-y {
+            animation: spinY 3.5s linear infinite;
+        }
+
+        @keyframes spinY {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .spin-x {
+            animation: spinX 3.5s linear infinite;
+        }
+
+        @keyframes spinX {
+            from { transform: rotateX(0deg); }
+            to { transform: rotateX(360deg); }
+        }
+
+        /* 19. BLUR FOCUS */
+        .blur-focus {
+            animation: blurFocus 3s ease-in-out infinite;
+        }
+
+        @keyframes blurFocus {
+            0%, 100% { filter: blur(0px); }
+            50% { filter: blur(4px); }
+        }
+
+        /* 20. GRAYSCALE TOGGLE */
+        .grayscale-toggle {
+            animation: grayscaleToggle 3s ease-in-out infinite;
+        }
+
+        @keyframes grayscaleToggle {
+            0%, 100% { filter: grayscale(0%); }
+            50% { filter: grayscale(100%); }
+        }
+
+        /* COMBINATION ANIMATIONS */
+        .spin-scale {
+            animation: spinScale 3.5s ease-in-out infinite;
+        }
+
+        @keyframes spinScale {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+        }
+
+        .bounce-rotate {
+            animation: bounceRotate 2.5s ease-in-out infinite;
+        }
+
+        @keyframes bounceRotate {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .fade-slide-scale {
+            animation: fadeSlideScale 3.5s ease-in-out infinite;
+        }
+
+        @keyframes fadeSlideScale {
+            0%, 100% { transform: translateX(-30px) scale(0.7); opacity: 0; }
+            50% { transform: translateX(30px) scale(1.2); opacity: 1; }
+        }
+
+        .slide-fade {
+            animation: slideFade 3.5s ease-in-out infinite;
+        }
+
+        @keyframes slideFade {
+            0%, 100% { transform: translateX(-50px); opacity: 0; }
+            50% { transform: translateX(0); opacity: 1; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .footer-accent {
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .footer-tagline {
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Wildlife in Motion</h1>
+        <p class="subtitle">A journey through CSS animations with nature's finest</p>
+    </header>
+
+    <div class="container">
+        <!-- FADE ANIMATIONS -->
+        <h2 class="section-title">Fade Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Fade In</h2>
+                    <p>Smooth opacity transition from invisible to visible</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./background.webp" alt="Elephants" class="demo-image fade-in">
+                </div>
+                <div class="code-snippet">animation: fadeIn 2s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Fade In/Out</h2>
+                    <p>Continuous fade in and out cycle</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./buzzard-554486.jpg" alt="Lion" class="demo-image fade-in-out">
+                </div>
+                <div class="code-snippet">animation: fadeInOut 3s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- SLIDE ANIMATIONS -->
+        <h2 class="section-title">Slide Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Slide Right</h2>
+                    <p>Horizontal sliding motion</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./deer-4693574.jpg" alt="Leopard" class="demo-image slide-right">
+                </div>
+                <div class="code-snippet">animation: slideRight 3s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Slide Up</h2>
+                    <p>Vertical sliding motion</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./elephants-1900332.jpg" alt="Deer" class="demo-image slide-up">
+                </div>
+                <div class="code-snippet">animation: slideUp 3s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- ROTATE ANIMATIONS -->
+        <h2 class="section-title">Rotation Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Rotate 2D</h2>
+                    <p>Continuous 360° rotation</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./fox-985292.jpg" alt="Buzzard" class="demo-image rotate">
+                </div>
+                <div class="code-snippet">animation: rotate 4s linear infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Rotate 3D</h2>
+                    <p>Multi-axis 3D rotation</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./gazelle-3758346.jpg" alt="Fox" class="demo-image rotate-3d">
+                </div>
+                <div class="code-snippet">animation: rotate3d 5s linear infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Spin Y-Axis</h2>
+                    <p>Rotation around Y axis</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./kingfisher-9399869.jpg" alt="Kingfisher" class="demo-image spin-y">
+                </div>
+                <div class="code-snippet">animation: spinY 3.5s linear infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Spin X-Axis</h2>
+                    <p>Rotation around X axis</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./leopard-163035.jpg" alt="Gazelle" class="demo-image spin-x">
+                </div>
+                <div class="code-snippet">animation: spinX 3.5s linear infinite;</div>
+            </div>
+        </div>
+
+        <!-- SCALE ANIMATIONS -->
+        <h2 class="section-title">Scale Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Pulse</h2>
+                    <p>Smooth scaling in and out</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./lynx-8443540.jpg" alt="Lynx" class="demo-image pulse">
+                </div>
+                <div class="code-snippet">animation: pulse 2.5s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Heartbeat</h2>
+                    <p>Double-beat pulse effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./buzzard-554486.jpg" alt="Elephants" class="demo-image heartbeat">
+                </div>
+                <div class="code-snippet">animation: heartbeat 1.5s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- BOUNCE ANIMATIONS -->
+        <h2 class="section-title">Bounce Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Bounce Vertical</h2>
+                    <p>Realistic bouncing motion</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./elephants-1900332.jpg" alt="Deer" class="demo-image bounce">
+                </div>
+                <div class="code-snippet">animation: bounce 2s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Bounce Horizontal</h2>
+                    <p>Side-to-side bouncing</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./deer-4693574.jpg" alt="Fox" class="demo-image bounce-horizontal">
+                </div>
+                <div class="code-snippet">animation: bounceHorizontal 2s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- SHAKE & WOBBLE -->
+        <h2 class="section-title">Shake & Wobble</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Shake</h2>
+                    <p>Rapid horizontal shake</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./buzzard-554486.jpg" alt="Buzzard" class="demo-image shake">
+                </div>
+                <div class="code-snippet">animation: shake 0.6s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Wobble</h2>
+                    <p>Gentle rotation wobble</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./lion-2820443.jpg" alt="Lion" class="demo-image wobble">
+                </div>
+                <div class="code-snippet">animation: wobble 1s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Wiggle</h2>
+                    <p>Playful wiggling motion</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./kingfisher-9399869.jpg" alt="Kingfisher" class="demo-image wiggle">
+                </div>
+                <div class="code-snippet">animation: wiggle 1s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- FLIP ANIMATIONS -->
+        <h2 class="section-title">Flip Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Flip Horizontal</h2>
+                    <p>Y-axis flip effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./gazelle-3758346.jpg" alt="Gazelle" class="demo-image flip">
+                </div>
+                <div class="code-snippet">animation: flip 2.5s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Flip Vertical</h2>
+                    <p>X-axis flip effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./leopard-163035.jpg" alt="Leopard" class="demo-image flip-vertical">
+                </div>
+                <div class="code-snippet">animation: flipVertical 2.5s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- SWING ANIMATIONS -->
+        <h2 class="section-title">Swing Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Swing</h2>
+                    <p>Gentle swinging from top</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./lynx-8443540.jpg" alt="Lynx" class="demo-image swing">
+                </div>
+                <div class="code-snippet">animation: swing 2.5s ease-in-out infinite;<br>transform-origin: top center;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Pendulum</h2>
+                    <p>Wider pendulum motion</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./elephants-1900332.jpg" alt="Elephants" class="demo-image pendulum">
+                </div>
+                <div class="code-snippet">animation: pendulum 2.5s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- ZOOM ANIMATIONS -->
+        <h2 class="section-title">Zoom Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Zoom In</h2>
+                    <p>Scale from small to normal</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./fox-985292.jpg" alt="Fox" class="demo-image zoom-in">
+                </div>
+                <div class="code-snippet">animation: zoomIn 2.5s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Zoom Out</h2>
+                    <p>Scale from normal to large</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./deer-4693574.jpg" alt="Deer" class="demo-image zoom-out">
+                </div>
+                <div class="code-snippet">animation: zoomOut 2.5s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- SKEW & DISTORTION -->
+        <h2 class="section-title">Skew & Distortion</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Skew</h2>
+                    <p>Diagonal distortion effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./lion-2820443.jpg" alt="Lion" class="demo-image skew">
+                </div>
+                <div class="code-snippet">animation: skew 3s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Elastic</h2>
+                    <p>Stretchy elastic motion</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./buzzard-554486.jpg" alt="Buzzard" class="demo-image elastic">
+                </div>
+                <div class="code-snippet">animation: elastic 2s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Jello</h2>
+                    <p>Jelly-like wobble effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./gazelle-3758346.jpg" alt="Gazelle" class="demo-image jello">
+                </div>
+                <div class="code-snippet">animation: jello 2s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- SPECIAL EFFECTS -->
+        <h2 class="section-title">Special Effects</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Roll In</h2>
+                    <p>Rolling entrance effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./kingfisher-9399869.jpg" alt="Kingfisher" class="demo-image roll-in">
+                </div>
+                <div class="code-snippet">animation: rollIn 3s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Blink</h2>
+                    <p>On/off blinking effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./leopard-163035.jpg" alt="Leopard" class="demo-image blink">
+                </div>
+                <div class="code-snippet">animation: blink 1s step-end infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Float</h2>
+                    <p>Gentle floating motion</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./lynx-8443540.jpg" alt="Lynx" class="demo-image float">
+                </div>
+                <div class="code-snippet">animation: float 3.5s ease-in-out infinite;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Morph</h2>
+                    <p>Border-radius morphing</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./deer-4693574.jpg" alt="Elephants" class="demo-image morph">
+                </div>
+                <div class="code-snippet">animation: morph 4s ease-in-out infinite;</div>
+            </div>
+        </div>
+
+        <!-- FILTER EFFECTS -->
+        <h2 class="section-title">Filter Effects</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Blur Focus</h2>
+                    <p>Blur and focus transition</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./fox-985292.jpg" alt="Fox" class="demo-image blur-focus">
+                </div>
+                <div class="code-snippet">animation: blurFocus 3s ease-in-out infinite;<br>filter: blur(4px);</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Grayscale Toggle</h2>
+                    <p>Color to grayscale transition</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./deer-4693574.jpg" alt="Deer" class="demo-image grayscale-toggle">
+                </div>
+                <div class="code-snippet">animation: grayscaleToggle 3s ease-in-out infinite;<br>filter: grayscale(100%);</div>
+            </div>
+        </div>
+
+        <!-- COMBINATION ANIMATIONS -->
+        <h2 class="section-title">Combination Animations</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Spin + Scale</h2>
+                    <p>Rotating while scaling</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./lion-2820443.jpg" alt="Lion" class="demo-image spin-scale">
+                </div>
+                <div class="code-snippet">transform: rotate(180deg) scale(1.2);</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Bounce + Rotate</h2>
+                    <p>Bouncing with rotation</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./buzzard-554486.jpg" alt="Buzzard" class="demo-image bounce-rotate">
+                </div>
+                <div class="code-snippet">transform: translateY(-30px) rotate(180deg);</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Fade + Slide + Scale</h2>
+                    <p>Triple combination effect</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./gazelle-3758346.jpg" alt="Gazelle" class="demo-image fade-slide-scale">
+                </div>
+                <div class="code-snippet">transform: translateX(30px) scale(1.2);<br>opacity: 1;</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Slide + Fade</h2>
+                    <p>Sliding with fade transition</p>
+                </div>
+                <div class="demo-box">
+                    <img src="./kingfisher-9399869.jpg" alt="Kingfisher" class="demo-image slide-fade">
+                </div>
+                <div class="code-snippet">animation: slideFade 3.5s ease-in-out infinite;</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Built with pure <span class="footer-accent">CSS animations</span> • No JavaScript required</p>
+        <p>Experiment with <span class="footer-accent">animation-duration</span>, <span class="footer-accent">animation-timing-function</span>, and <span class="footer-accent">animation-iteration-count</span> for endless variations</p>
+        <p class="footer-tagline">Celebrating the beauty of wildlife and the art of motion</p>
+    </footer>
+</body>
+</html>
